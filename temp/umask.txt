@@ -1,0 +1,11 @@
+Setting Default Permissions
+Enter umask. This command sets default file permissions. Here's how it works:
+Files usually start at 666 (rw-rw-rw-)
+Directories start at 777 (rwxrwxrwx)
+The umask value gets subtracted from these
+So, if you set umask 022, new files end up at 644 (rw-r--r--) and directories at 755 (rwxr-xr-x). Want to set a default umask? Add this to /etc/profile or ~/.bashrc:
+umask 027
+This umask (027) balances security and usability:
+Directories: 750 (rwxr-x---)
+Files: 640 (rw-r-----)
+"To get the final file permission, just subtract the umask from 666." - Ashish Jaiswal, Linux User

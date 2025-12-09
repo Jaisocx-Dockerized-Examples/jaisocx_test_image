@@ -1,0 +1,27 @@
+# GROUPS AND USERS
+
+
+export hashed_pwd="$(mkpasswd -m sha512 "${pwd}" "${salt}")"
+
+
+adduser -D username
+
+addgroup username mygroup # or usermod -aG mygroup username
+
+# Verify group membership
+id username
+
+
+# on host, get host user id
+HOST_UID=$(id -u)
+HOST_GID=$(id -g)
+# docker run --rm -it --user $HOST_UID:$HOST_GID your-image
+# docker run --user $(id -u):$(id -g)
+
+# Create group
+addgroup mygroup
+
+
+
+
+

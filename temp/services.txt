@@ -1,0 +1,28 @@
+
+
+rc-service networking stop 
+rc-service sshd start 
+rc-service chronyd status 
+
+
+For example, for a service named "base", the configuration file would be /etc/conf.d/base.
+
+rc-status
+
+A runlevel is simply a directory in /etc/runlevels,
+ and an enabled service is a symlink to the init.d file. 
+ For example, adding the sshd service to the default runlevel 
+ is creating a symlink to /etc/init.d/sshd in /etc/runlevels/default. 
+ Creating a new runlevel thus involves creating a new directory under /etc/runlevels.
+
+
+Most of the time, you do not want to shut down all of your default services 
+if you’re switching to the office runlevel. Runlevel "inheritance" is acheived through runlevel stacking. 
+If you pass the -s flag to rc-update, you can actually add a runlevel to a runlevel. 
+For example, if you wanted to have an office runlevel that would be the same as default, 
+but with the myvpn service started, you would do the following to set that up:
+
+mkdir /etc/runlevels/office
+rc-update -s add default office
+rc-update add myvpn office
+

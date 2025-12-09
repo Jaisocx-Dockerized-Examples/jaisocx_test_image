@@ -1,0 +1,15 @@
+
+
+apk search libsqlite3.so 
+apk search consul 
+apk search -e vim 
+apk search -e so:libsqlite3.so.* 
+
+
+Here are a few examples of adding packages:
+
+apk add busybox-extras 
+apk add bash zsh 
+apk add cmd:bash cmd:zsh 
+apk add so:libmpack.so.0 
+apk add pc:msgpack 

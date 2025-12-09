@@ -1,0 +1,29 @@
+services:
+  app:
+    image: "jaisocx/testimage:1.0.1-alpine-3.21.3"
+    environment:
+      ROOT_HASHED_PWD: ${ROOT_HASHED_PWD}
+      GROUP_SUDOERS_ID: ${GROUP_SUDOERS_ID}
+      GROUP_SUDOERS_NAME: ${GROUP_SUDOERS_NAME}
+      GROUP_USERS_ID: ${GROUP_USERS_ID}
+      GROUP_USERS_NAME: ${GROUP_USERS_NAME}
+      USER_SUDOER_ID: ${USER_SUDOER_ID}
+      USER_SUDOER_NAME: ${USER_SUDOER_NAME}
+      USER_SUDOER_HASHED_PWD: ${USER_SUDOER_HASHED_PWD}
+      USER_ID: ${USER_ID}
+      USER_NAME: ${USER_NAME}
+      LOGGED_IN_USERNAME: ${LOGGED_IN_USERNAME}
+      VOLUME_PATH: ${VOLUME_PATH}
+    volumes:
+      - "./data/:${VOLUME_PATH}"
+      - "./log/:/var/log/"
+    # ports:
+    #   - 3000:3000
+    networks:
+      - sandbox_network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  sandbox_network:
+    driver: bridge
